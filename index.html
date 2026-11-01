@@ -73,6 +73,6 @@ function shell(){const r=$('#r');r.innerHTML='<div class="app"><aside><h2><i cla
 async function boot(){if(!LS.wtc)return login();try{me={role:'owner',perms:[],username:G().repo};C=await load();shell()}catch(e){const g=G();delete LS.wtc;login(e.message,g)}}
 function login(err,g={}){$('#r').innerHTML='<div class="lg"><div class="lb"><h1><i class="fa-solid fa-lock"></i> CMS Login</h1><p>World Tech Codex'+(err?' <br><b style="color:var(--er)">'+err+'</b>':'')+'</p><div class="f"><label>Website repo (owner/repo)</label><input id="rp" placeholder="saad/portfolio"></div><div class="f"><label>Website link (for image previews)</label><input id="ws" placeholder="https://your-site.pages.dev"></div><div class="f"><label>Branch</label><input id="br" value="main"></div><div class="f"><label>GitHub token</label><input id="tk" type="text" autocomplete="off"></div><button class="b" id="go" style="width:100%;justify-content:center">Log in</button></div></div>';
  $('#rp').value=g.repo||'';$('#ws').value=g.site||'';$('#br').value=g.branch||'main';
- const go=async()=>{LS.wtc=JSON.stringify({repo:$('#rp').value.trim(),branch:$('#br').value.trim()||'main',token:$('#tk').value.trim(),site:$('#ws').value.trim()});boot()};$('#go').onclick=go;$('#tk').onkeydown=e=>e.key=='Enter'&&go()}
+ const go=async()=>{LS.wtc=JSON.stringify({repo:$('#rp').value.trim(),branch:$('#br').value.trim()||'main',token:$('#tk').value.trim(),site:$('#ws').value.trim()});boot()};$('#go').onclick=go;$('#tk').onkeydown=e=>{if(e.key=='Enter')go()}}
 boot();
 </script></body></html>
